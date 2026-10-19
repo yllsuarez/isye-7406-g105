@@ -1,0 +1,24 @@
+# R
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.ipynb_checkpoints/
+
+# Data / models (avoid committing large/generated artifacts)
+*.csv
+!data-cleaning/sample_data/*.csv
+*.pkl
+*.rds
+
+# OS / editor
+.DS_Store
+.vscode/*.log

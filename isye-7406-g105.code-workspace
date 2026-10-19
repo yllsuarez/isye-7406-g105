@@ -1,0 +1,8 @@
+{
+	"folders": [
+		{ "name": "r-models", "path": "r-models" },
+		{ "name": "data-cleaning", "path": "data-cleaning" },
+		{ "name": "web-service", "path": "web-service" }
+	],
+	"settings": {}
+}
