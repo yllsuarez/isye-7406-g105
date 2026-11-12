@@ -1,0 +1,128 @@
+{
+  "target": "cc1 total cost %",
+  "features": [
+    {
+      "name": "destination_name",
+      "role": "categorical"
+    },
+    {
+      "name": "firm_type_clean",
+      "role": "categorical"
+    },
+    {
+      "name": "payment_instrument_group",
+      "role": "categorical"
+    },
+    {
+      "name": "access point",
+      "role": "categorical"
+    },
+    {
+      "name": "receiving network coverage",
+      "role": "categorical"
+    },
+    {
+      "name": "speed actual",
+      "role": "categorical"
+    },
+    {
+      "name": "pickup method",
+      "role": "categorical"
+    },
+    {
+      "name": "cc1 fx margin",
+      "role": "numeric"
+    },
+    {
+      "name": "year",
+      "role": "numeric"
+    },
+    {
+      "name": "is_non_transparent",
+      "role": "numeric"
+    }
+  ],
+  "categories": {
+    "destination_name": [
+      "Brazil",
+      "Colombia",
+      "Costa Rica",
+      "Cuba",
+      "Dominican Republic",
+      "Ecuador",
+      "El Salvador",
+      "Guatemala",
+      "Guyana",
+      "Haiti",
+      "Honduras",
+      "Jamaica",
+      "Mexico",
+      "Nicaragua",
+      "Panama",
+      "Peru"
+    ],
+    "firm_type_clean": [
+      "Bank",
+      "Money Transfer Operator"
+    ],
+    "payment_instrument_group": [
+      "Bank Account Transfer",
+      "Cash",
+      "Credit Card",
+      "Debit Card",
+      "Door To Door",
+      "Multiple"
+    ],
+    "access point": [
+      "Agent",
+      "Agent,Call Center",
+      "Agent,Internet",
+      "Bank branch",
+      "Bank branch,Call Center",
+      "Bank branch,Internet",
+      "Call Center",
+      "Internet"
+    ],
+    "receiving network coverage": [
+      "High",
+      "Low",
+      "Medium"
+    ],
+    "speed actual": [
+      "2 days",
+      "3-5 days",
+      "6 days or more",
+      "less than one hour",
+      "next day",
+      "same day"
+    ],
+    "pickup method": [
+      "bank account",
+      "bank account (same/partner bank)",
+      "cash",
+      "mobile wallet",
+      "own/partner bank account"
+    ]
+  },
+  "fx_margin_by_destination": {
+    "Brazil": 3.2131,
+    "Colombia": 2.5072,
+    "Costa Rica": 2.2366,
+    "Cuba": 2.8377,
+    "Dominican Republic": 2.3933,
+    "Ecuador": 0.0,
+    "El Salvador": 0.0,
+    "Guatemala": 1.34,
+    "Guyana": 4.8426,
+    "Haiti": 0.1189,
+    "Honduras": 0.2737,
+    "Jamaica": 3.38,
+    "Mexico": 1.519,
+    "Nicaragua": 0.0,
+    "Panama": 0.0,
+    "Peru": 0.6033
+  },
+  "fx_margin_overall": 1.5138,
+  "year_min": 2016,
+  "year_max": 2025
+}
