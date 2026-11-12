@@ -5,9 +5,9 @@ Visual Studio solution with multiple projects):
 
 | Folder | Purpose | Language |
 |---|---|---|
-| [`r-models/`](./r-models) | Train the ML model(s) | R |
+| [`r-models/`](./r-models) | Train the ML model (LassoCV) | Python |
 | [`data-cleaning/`](./data-cleaning) | Data ingestion & preprocessing | Python |
-| [`web-service/`](./web-service) | Serve model predictions via a simple web app | Python |
+| [`web-service/`](./web-service) | FastAPI backend + React/TypeScript single-page app | Python / TypeScript |
 
 ## Getting started
 
@@ -19,4 +19,4 @@ See each folder's `README.md` for setup and run instructions.
 ## Project board
 
 Progress is tracked on the [project board](https://github.com/users/yllsuarez/projects/2),
-with a lane per solution (R Models, Data Cleaning, Web Service).
+with a lane per solution (Models, Data Cleaning, Web Service).

@@ -17,8 +17,14 @@ venv/
 *.csv
 !data-cleaning/sample_data/*.csv
 *.pkl
+!r-models/model/model.pkl
+!web-service/backend/model/model.pkl
 *.rds
 
 # OS / editor
 .DS_Store
 .vscode/*.log
+
+# Node
+node_modules/
+dist/

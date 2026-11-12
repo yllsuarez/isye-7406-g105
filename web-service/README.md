@@ -1,27 +1,37 @@
 # web-service
 
-Single-page Streamlit app that loads the trained model, takes user input,
-and displays the prediction.
+Single-page remittance cost estimator.
 
-## Setup
+- `backend/` – minimal synchronous FastAPI app: `GET /metadata` (form options and
+  fx-margin defaults) and `POST /predict`.
+- `frontend/` – Vite + React + TypeScript page that posts the form values and
+  shows the predicted cost % and estimated USD fee.
+
+## 1. Train and copy the model
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
+cd ../r-models && python train_model.py && cd ../web-service
+./sync_model.sh        # copies model.pkl + metadata.json to backend/model/
+```
+
+## 2. Run the backend
+
+```bash
+cd backend
+python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
+uvicorn main:app --reload      # http://localhost:8000
 ```
 
-Place the exported model file (`model.pkl`, from `../r-models` or a Python
-training script) in this folder.
+Use the same scikit-learn version for training and serving.
 
-## Run locally
+## 3. Run the frontend
 
 ```bash
-streamlit run app.py
+cd frontend
+npm install
+npm run dev                    # http://localhost:5173
 ```
 
-## Deploy
-
-Push to GitHub and connect the repo on
-[Streamlit Community Cloud](https://share.streamlit.io), pointing it at
-`web-service/app.py`.
+The backend URL is set by `VITE_API_URL` in `frontend/.env` (default
+`http://localhost:8000`). `npm run build` type-checks and builds for production.
