@@ -29,7 +29,7 @@ Our approach follows the model- and variable-selection framework taught in ISyE 
 
 Our target, cc1 total cost %, averages 5.34% with a median of 4.71% and a standard deviation of 3.03%, ranging from −4.09% all the way up to 34.0%. The distribution is noticeably right-skewed (skewness = 1.88, excess kurtosis = 6.33)—a small set of outlier corridors with especially high-cost providers pulls the tail out. Even the 25th percentile, at 3.50%, sits just above the SDG 3% target, which tells us roughly three-quarters of all transactions still miss that benchmark.
 
-![Figure 1. Distribution of cc1 total cost % (histogram and boxplot), with the 3% SDG target marked.](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures/01_target_distribution.png)
+![Figure 1. Distribution of cc1 total cost % (histogram and boxplot), with the 3% SDG target marked.](figures/01_target_distribution.png)
 
 *Figure 1. Distribution of cc1 total cost % (histogram and boxplot), with the 3% SDG target marked.*
 
@@ -38,7 +38,7 @@ Our target, cc1 total cost %, averages 5.34% with a median of 4.71% and a standa
 
 Destination turns out to be the single biggest driver of cost variation in this dataset. Cuba sits at 12.0% and Guyana at 8.9%—both more than double the SDG target—while Honduras (3.9%), Ecuador (4.0%), and El Salvador (4.0%) come closest to meeting it. Mexico, despite being the highest-volume corridor, averages 4.6%. That roughly 8-percentage-point gap between the cheapest and priciest corridors dwarfs anything attributable to firm type or payment instrument, which is part of what motivates the corridor clustering analysis later in this report.
 
-![Figure 3. Mean cc1 total cost % by destination, sorted descending.](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures/03_cost_by_destination.png)
+![Figure 3. Mean cc1 total cost % by destination, sorted descending.](figures/03_cost_by_destination.png)
 
 *Figure 3. Mean cc1 total cost % by destination, sorted descending.*
 
@@ -47,7 +47,7 @@ Destination turns out to be the single biggest driver of cost variation in this 
 
 Banks turn out not to be meaningfully cheaper than Money Transfer Operators (MTOs): recomputed directly from the modeling subset, both average 5.34%, a negligible gap, and both land well above the 3% SDG target. MTOs dominate the market by sheer volume, accounting for 10,707 of the 12,386 modeling rows (86%).
 
-![Figure 2. cc1 total cost % by firm type.](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures/02_cost_by_firm_type.png)
+![Figure 2. cc1 total cost % by firm type.](figures/02_cost_by_firm_type.png)
 
 *Figure 2. cc1 total cost % by firm type.*
 
@@ -56,7 +56,7 @@ Banks turn out not to be meaningfully cheaper than Money Transfer Operators (MTO
 
 Payment instrument does matter, though: cash-based transfers run higher and more variable than bank-account transfers or digital instruments, and credit-card transfers carry a clear premium on top of that—most likely the card-processing fee passed through to the sender.
 
-![Figure 4. cc1 total cost % by payment instrument group.](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures/04_cost_by_payment_instrument.png)
+![Figure 4. cc1 total cost % by payment instrument group.](figures/04_cost_by_payment_instrument.png)
 
 *Figure 4. cc1 total cost % by payment instrument group.*
 
@@ -65,7 +65,7 @@ Payment instrument does matter, though: cash-based transfers run higher and more
 
 Cost has stayed essentially flat from 2016 through 2025, bouncing between a low of 4.96% (2020) and a high of 5.59% (2024) with no sustained movement toward the SDG target in either direction. year turns out to be a fairly weak predictor on its own; we keep it mainly because it defines the temporal train/test split used everywhere else in this report.
 
-![Figure 5. Mean cc1 total cost % by year, 2016-2025.](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures/05_cost_by_year.png)
+![Figure 5. Mean cc1 total cost % by year, 2016-2025.](figures/05_cost_by_year.png)
 
 *Figure 5. Mean cc1 total cost % by year, 2016-2025.*
 
@@ -74,7 +74,7 @@ Cost has stayed essentially flat from 2016 through 2025, bouncing between a low 
 
 The engineered is_non_transparent flag—built from missing cc2 total cost % values as a proxy for non-disclosure—applies to 1.9% of rows, and those flagged rows run modestly cheaper on average than transparent ones (4.80% vs. 5.35%). The proxy isn't perfect: 81% of flagged rows actually carry a "send limits" disclosure note rather than a true exchange-rate non-disclosure note, so we keep it as a candidate feature while being upfront about that limitation.
 
-![Figure 6. cc1 total cost % by transparency proxy (cc2 total cost % missing vs. present).](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures/06_transparency_comparison.png)
+![Figure 6. cc1 total cost % by transparency proxy (cc2 total cost % missing vs. present).](figures/06_transparency_comparison.png)
 
 *Figure 6. cc1 total cost % by transparency proxy (cc2 total cost % missing vs. present).*
 
@@ -83,7 +83,7 @@ The engineered is_non_transparent flag—built from missing cc2 total cost % val
 
 Of the numeric fields, cc1 fx margin correlates most strongly with the target (r = 0.71), which makes sense since FX margin is a direct cost component. cc1 lcu fx rate and inter lcu bank fx correlate only weakly (r ≈ 0.06-0.07) and are currency-scale fields we exclude from the predictor set. All of the cc2 * fields correlate highly with the target by construction (r = 0.91 for cc2 total cost %, for instance) and are excluded outright as leakage variables.
 
-![Figure 7. Pearson correlation heatmap of numeric RPW fields plus year.](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures/07_correlation_heatmap.png)
+![Figure 7. Pearson correlation heatmap of numeric RPW fields plus year.](figures/07_correlation_heatmap.png)
 
 *Figure 7. Pearson correlation heatmap of numeric RPW fields plus year.*
 
@@ -92,19 +92,19 @@ Of the numeric fields, cc1 fx margin correlates most strongly with the target (r
 
 We relied on three complementary feature-selection methods, documented in full in the midterm's EDA & Feature Selection report (r-models/reports/EDA_FeatureSelection_Group105) and summarized here. Forward stepwise selection by BIC kept 9 of the 10 candidate blocks, entering them in this order: cc1 fx margin, pickup method, payment_instrument_group, destination_name, access point, receiving network coverage, speed actual, year, is_non_transparent—firm_type_clean was the lone block it left out. LassoCV (5-fold CV, alpha = 0.001) zeroed out 6 of the 42 encoded features, with the largest surviving coefficients landing on pickup method_own/partner bank account, destination_name_Cuba, and access point_Bank branch,Internet. RidgeCV (alpha = 1.15), by contrast, shrinks every coefficient but zeroes out none of them. Running PCA on the numeric block (cc1 fx margin, year, is_non_transparent) confirmed those three features are close to orthogonal, so dimensionality reduction didn't buy us anything there. Encouragingly, the information-criterion and shrinkage methods converge on the same dominant predictors—destination, payment instrument/pickup method, and FX margin—which gives us confidence that the final feature set (destination_name, firm_type_clean, payment_instrument_group, access point, receiving network coverage, speed actual, pickup method, cc1 fx margin, year, is_non_transparent; 42 encoded features) is a solid one.
 
-![Figure 8. AIC/BIC vs. number of features in forward stepwise selection.](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures/08_aic_bic_vs_nvars.png)
+![Figure 8. AIC/BIC vs. number of features in forward stepwise selection.](figures/08_aic_bic_vs_nvars.png)
 
 *Figure 8. AIC/BIC vs. number of features in forward stepwise selection.*
 
-![Figure 9. LASSO regularization path (coefficients vs. alpha).](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures/09_lasso_coef_path.png)
+![Figure 9. LASSO regularization path (coefficients vs. alpha).](figures/09_lasso_coef_path.png)
 
 *Figure 9. LASSO regularization path (coefficients vs. alpha).*
 
-![Figure 10. Final LassoCV coefficients, top 20 by magnitude.](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures/10_lasso_coefficients_bar.png)
+![Figure 10. Final LassoCV coefficients, top 20 by magnitude.](figures/10_lasso_coefficients_bar.png)
 
 *Figure 10. Final LassoCV coefficients, top 20 by magnitude.*
 
-![Figure 11. PCA scree plot of the numeric candidate block.](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures/11_pca_scree.png)
+![Figure 11. PCA scree plot of the numeric candidate block.](figures/11_pca_scree.png)
 
 *Figure 11. PCA scree plot of the numeric candidate block.*
 
@@ -125,13 +125,13 @@ We fit four regression models on the identical final feature set—one-hot encod
 
 Linear Regression comes out with the lowest test RMSE (1.935, R² = 0.672), though it's effectively tied with LASSO (1.947) and Ridge (1.960). The Random Forest posts the highest test RMSE (1.978) but the lowest MAE of the four, which suggests it handles the bulk of ordinary transactions a bit better even though it struggles more to extrapolate to the handful of extreme-cost corridors (Cuba, Guyana) that dominate RMSE's squared-error penalty. That lines up with what we see from the shipped production model (LassoCV refit on all data, holdout RMSE ≈ 1.95, R² ≈ 0.67 as reported in train_model.py/model/metadata.json): a linear, regularized model captures this dataset's structure about as well as a flexible nonparametric one does. That's informative in itself—it suggests the relationship between our selected features and cost is close to additive and linear once destination, payment instrument, and FX margin are already encoded, leaving little extra signal for a tree ensemble to exploit.
 
-![Figure 12. Residuals vs. fitted values and residual distribution, Linear Regression (best test-RMSE regression model), 2023+ holdout.](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures_final/12_regression_residuals.png)
+![Figure 12. Residuals vs. fitted values and residual distribution, Linear Regression (best test-RMSE regression model), 2023+ holdout.](figures_final/12_regression_residuals.png)
 
 *Figure 12. Residuals vs. fitted values and residual distribution, Linear Regression (best test-RMSE regression model), 2023+ holdout.*
 
 Figure 12's residual plot for Linear Regression tells a consistent story: residuals cluster near zero but trail off into a long right tail, mirroring the target's own right-skewed shape. A handful of very high-cost transactions, mostly from Cuba and Guyana, get systematically under-predicted, which makes sense since no linear model can fully absorb an outlier destination's level shift from a single pooled coefficient.
 
-![Figure 13. Top 15 standardized LASSO coefficients by magnitude, compared to Ridge on the same features.](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures_final/13_lasso_ridge_coefficients.png)
+![Figure 13. Top 15 standardized LASSO coefficients by magnitude, compared to Ridge on the same features.](figures_final/13_lasso_ridge_coefficients.png)
 
 *Figure 13. Top 15 standardized LASSO coefficients by magnitude, compared to Ridge on the same features.*
 
@@ -158,7 +158,7 @@ Figure 12's residual plot for Linear Regression tells a consistent story: residu
 
 LASSO's biggest standardized coefficients echo what we already found during feature selection at the midterm—destination and pickup-method dummies, plus cc1 fx margin, lead the pack. Ridge's coefficients on those same features point in the same direction but are uniformly smaller, which fits with its smoother L2 shrinkage compared to LASSO's sparser L1 penalty.
 
-![Figure 14. Random Forest regressor feature importance (mean decrease in impurity), top 15.](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures_final/14_rf_feature_importance.png)
+![Figure 14. Random Forest regressor feature importance (mean decrease in impurity), top 15.](figures_final/14_rf_feature_importance.png)
 
 *Figure 14. Random Forest regressor feature importance (mean decrease in impurity), top 15.*
 
@@ -201,7 +201,7 @@ We binarized the target at the SDG 10.c threshold—cc1 total cost % ≥ 3% coun
 
 By F1, Random Forest comes out on top (F1 = 0.932, accuracy = 0.880, precision = 0.899, recall = 0.968). Accuracy alone would be misleading here given the class imbalance—a classifier that just always guessed "high cost" would already land around 85%—so F1 and recall matter more for comparing these models. The Random Forest's higher recall means it misses fewer of the minority low-cost transactions, which are exactly the ones a sender is trying to find.
 
-![Figure 15. Confusion matrices by firm type, Random Forest (best-F1 classifier), 2023+ holdout.](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures_final/15_confusion_by_firmtype.png)
+![Figure 15. Confusion matrices by firm type, Random Forest (best-F1 classifier), 2023+ holdout.](figures_final/15_confusion_by_firmtype.png)
 
 *Figure 15. Confusion matrices by firm type, Random Forest (best-F1 classifier), 2023+ holdout.*
 
@@ -215,7 +215,7 @@ By F1, Random Forest comes out on top (F1 = 0.932, accuracy = 0.880, precision =
 
 Splitting the results by firm type, the Random Forest classifier performs differently for Banks (F1 = 0.907, n = 701) and Money Transfer Operators (F1 = 0.937, n = 3457). That tells us the model isn't just learning a shortcut based on firm type—it's actually picking up corridor- and instrument-level cost signal that holds up across provider types.
 
-![Figure 16. Precision/recall/F1 by destination country, Random Forest, 2023+ holdout.](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures_final/16_classification_by_destination.png)
+![Figure 16. Precision/recall/F1 by destination country, Random Forest, 2023+ holdout.](figures_final/16_classification_by_destination.png)
 
 *Figure 16. Precision/recall/F1 by destination country, Random Forest, 2023+ holdout.*
 
@@ -248,7 +248,7 @@ Performance varies a fair amount by destination: Cuba posts the highest F1 (1.00
 
 We rolled the 16 LAC destination countries up into a country-level profile—mean total cost, mean FX margin, mean fee in local currency units, and transparency rate—standardized it, and ran both k-means and hierarchical (Ward-linkage) clustering on top. For k-means, we picked k by looking at the elbow (inertia) curve alongside the silhouette score across k = 2..7.
 
-![Figure 17. K-means inertia (elbow) and silhouette score vs. number of clusters k, for the 16 LAC destinations.](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures_final/17_kmeans_elbow_silhouette.png)
+![Figure 17. K-means inertia (elbow) and silhouette score vs. number of clusters k, for the 16 LAC destinations.](figures_final/17_kmeans_elbow_silhouette.png)
 
 *Figure 17. K-means inertia (elbow) and silhouette score vs. number of clusters k, for the 16 LAC destinations.*
 
@@ -266,7 +266,7 @@ We rolled the 16 LAC destination countries up into a country-level profile—mea
 
 Silhouette score peaks at k = 2 (silhouette = 0.578) and falls off steadily as k grows, but that k=2 split is really just driven by one extreme outlier: Cuba (mean cost 11.99%, mean FX margin 2.84) ends up alone in its own cluster, against a single large cluster holding the other 15 destinations (mean cost 5.37%). That's a real finding—Cuba's cost profile is simply far enough from everyone else's that no regrouping beats a clean two-way split—but it doesn't tell us much about how the other 15 destinations relate to each other. For that finer-grained picture, we also report the k=4 partition below, which has a lower but still reasonable silhouette score.
 
-![Figure 18. K-means clusters (k=2) of the 16 LAC destinations, mean FX margin vs. mean total cost %.](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures_final/18_cluster_scatter.png)
+![Figure 18. K-means clusters (k=2) of the 16 LAC destinations, mean FX margin vs. mean total cost %.](figures_final/18_cluster_scatter.png)
 
 *Figure 18. K-means clusters (k=2) of the 16 LAC destinations, mean FX margin vs. mean total cost %.*
 
@@ -294,11 +294,14 @@ Silhouette score peaks at k = 2 (silhouette = 0.578) and falls off steadily as k
 
 Looking at k=4 instead, the partition splits into four cost tiers that are much easier to interpret (ordered here from cheapest to most expensive mean total cost): cluster 0 (mean cost 4.35%): Ecuador, El Salvador, Guatemala, Haiti, Honduras, Nicaragua, Panama, Peru; cluster 1 (mean cost 7.61%): Dominican Republic, Guyana, Jamaica; cluster 2 (mean cost 11.99%): Cuba; cluster 3 (mean cost 5.72%): Brazil, Colombia, Costa Rica, Mexico. The cheapest tier is made up of destinations with low, often near-zero, FX margins; the priciest non-Cuba tier (Brazil, Colombia, Costa Rica, Mexico, and similar corridors) pairs moderate-to-high FX margins with high transaction volume; and Dominican Republic, Guyana, and Jamaica form their own mid-to-high-cost tier with the highest FX margins outside of Cuba. All of this lines up with the regression and classification results above—FX margin and destination are the dominant cost drivers, and the clustering shows destinations grouping along almost that exact same axis.
 
-![Figure 19. Hierarchical (Ward linkage) clustering dendrogram of destination cost profiles.](/Users/yonnyleyvasuarez/repos/copilot-worktrees/isye-7406-g105/yllsuarez-legendary-carnival/r-models/reports/figures_final/19_dendrogram.png)
+![Figure 19. Hierarchical (Ward linkage) clustering dendrogram of destination cost profiles.](figures_final/19_dendrogram.png)
 
 *Figure 19. Hierarchical (Ward linkage) clustering dendrogram of destination cost profiles.*
 
 Figure 19's hierarchical dendrogram (Ward linkage) tells essentially the same story from another angle: Cuba doesn't join the rest of the tree until by far the largest linkage distance, confirming its status as a singleton outlier at low k, while the remaining destinations merge into recognizable sub-groups that line up with the k=4 k-means partition above. Two very different clustering methods landing on the same corridor groupings is reassuring convergent evidence.
+
+
+\clearpage
 
 
 # Web Application
@@ -308,6 +311,12 @@ To get this modeling work in front of an actual money sender, we built a small f
 The frontend (web-service/frontend/src/App.tsx) is just a single form mirroring the backend's input schema: dropdowns for the categorical fields, populated from GET /metadata so the UI can never drift out of sync with what the model was actually trained on; a numeric field for cc1 fx margin, pre-filled with the historical destination-level average; and a submit button that calls POST /predict and shows the predicted cost percentage (plus the estimated fee) back to the user. Because the categories are server-driven, if the model is ever retrained on an updated dataset with a new destination or payment instrument category, the frontend doesn't need a single line of code changed to stay correct.
 
 web-service/sync_model.sh is what glues the two halves of this monorepo together: it copies the trained artifacts (model.pkl and metadata.json) from r-models/model/ into web-service/backend/model/, so the backend always serves whichever model r-models/train_model.py produced most recently, without ever needing to import or depend on the r-models training code directly.
+
+![Figure 20. The deployed remittance-cost predictor web application, showing the input form and a sample prediction.](figures_final/20_web_app_screenshot.png)
+
+*Figure 20. The deployed remittance-cost predictor web application, showing the input form and a sample prediction.*
+
+Figure 20 shows the deployed app in action: the sender has picked a destination, firm type, payment instrument, access point, and the other form fields (with cc1 fx margin pre-filled from the historical destination-level average), and after submitting, the predicted cc1 total cost % and estimated USD fee are shown back on the same page—exactly the end-to-end flow a real remittance sender would use to compare providers before sending money.
 
 
 # Conclusions and Next Steps
@@ -372,6 +381,8 @@ Figure 17. K-means inertia (elbow) and silhouette score vs. number of clusters k
 Figure 18. K-means clusters (k=2) of the 16 LAC destinations, mean FX margin vs. mean total cost %.
 
 Figure 19. Hierarchical (Ward linkage) clustering dendrogram of destination cost profiles.
+
+Figure 20. The deployed remittance-cost predictor web application, showing the input form and a sample prediction.
 
 
 # Bibliography

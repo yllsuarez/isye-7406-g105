@@ -114,6 +114,9 @@ FIGURES_FINAL = [
      f"Figure 18. K-means clusters (k={best_k}) of the 16 LAC destinations, mean FX margin vs. mean total cost %."),
     ("19_dendrogram.png", FIG_DIR_FINAL,
      "Figure 19. Hierarchical (Ward linkage) clustering dendrogram of destination cost profiles."),
+    ("20_web_app_screenshot.png", FIG_DIR_FINAL,
+     "Figure 20. The deployed remittance-cost predictor web application, showing the input form "
+     "and a sample prediction."),
 ]
 ALL_FIGURES = FIGURES_MIDTERM + FIGURES_FINAL
 FIG_LOOKUP = {f: (d, c) for f, d, c in ALL_FIGURES}
@@ -432,6 +435,7 @@ CONTENT.append((
 ))
 
 CONTENT += [
+    ("pagebreak", None),
     ("h1", "Web Application"),
     ("p", "To get this modeling work in front of an actual money sender, we built a "
           "small full-stack web application: a FastAPI backend paired with a "
@@ -465,6 +469,14 @@ CONTENT += [
           "serves whichever model r-models/train_model.py produced most recently, "
           "without ever needing to import or depend on the r-models training code "
           "directly."),
+    ("fig", "20_web_app_screenshot.png"),
+    ("p", "Figure 20 shows the deployed app in action: the sender has picked a "
+          "destination, firm type, payment instrument, access point, and the other "
+          "form fields (with cc1 fx margin pre-filled from the historical "
+          "destination-level average), and after submitting, the predicted cc1 total "
+          "cost % and estimated USD fee are shown back on the same page\u2014exactly "
+          "the end-to-end flow a real remittance sender would use to compare "
+          "providers before sending money."),
 
     ("h1", "Conclusions and Next Steps"),
 
@@ -640,7 +652,9 @@ def build_docx():
 
     for item in CONTENT:
         kind = item[0]
-        if kind == "h1":
+        if kind == "pagebreak":
+            doc.add_page_break()
+        elif kind == "h1":
             doc.add_heading(item[1], level=1)
         elif kind == "h2":
             doc.add_heading(item[1], level=2)
@@ -705,7 +719,12 @@ def build_markdown():
     lines = [f"# {TITLE}", "", f"*{TEAM_LINE}*", "", f"*{AUTHORS_LINE}*", ""]
     for item in CONTENT:
         kind = item[0]
-        if kind == "h1":
+        if kind == "pagebreak":
+            # \clearpage (not \newpage) so any pending LaTeX floats (e.g. the
+            # preceding figure) are flushed onto the prior page before the break,
+            # instead of drifting forward onto the new page.
+            lines.append("\n\\clearpage\n")
+        elif kind == "h1":
             lines.append(f"\n# {item[1]}\n")
         elif kind == "h2":
             lines.append(f"\n## {item[1]}\n")
@@ -718,7 +737,8 @@ def build_markdown():
         elif kind == "fig":
             fdir, caption = FIG_LOOKUP[item[1]]
             fpath = os.path.join(fdir, item[1])
-            lines.append(f"![{caption}]({fpath})\n")
+            rel_fpath = os.path.relpath(fpath, REPORTS_DIR)
+            lines.append(f"![{caption}]({rel_fpath})\n")
             lines.append(f"*{caption}*\n")
         elif kind == "table":
             lines.append(table_to_markdown(item[1]) + "\n")
